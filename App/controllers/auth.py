@@ -1,6 +1,6 @@
 import flask_login
 from flask_jwt import JWT
-from App.models import User
+from App.models import Farmer
 
 
 def authenticate(username, password):

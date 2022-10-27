@@ -1,23 +1,23 @@
-from App.models import User
+from App.models import Farmer
 from App.database import db
 
 def create_user(username, password):
-    newuser = User(username=username, password=password)
+    newuser = Farmer(username=username, password=password)
     db.session.add(newuser)
     db.session.commit()
     return newuser
 
 def get_user_by_username(username):
-    return User.query.filter_by(username=username).first()
+    return Farmer.query.filter_by(username=username).first()
 
 def get_user(id):
-    return User.query.get(id)
+    return Farmer.query.get(id)
 
 def get_all_users():
-    return User.query.all()
+    return Farmer.query.all()
 
 def get_all_users_json():
-    users = User.query.all()
+    users = Farmer.query.all()
     if not users:
         return []
     users = [user.toJSON() for user in users]
