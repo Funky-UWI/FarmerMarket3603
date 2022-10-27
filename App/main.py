@@ -15,14 +15,14 @@ from App.controllers import (
 )
 
 from App.views import (
-    user_views,
+    farmer_views,
     index_views
 )
 
 # New views must be imported and added to this list
 
 views = [
-    user_views,
+    farmer_views,
     index_views
 ]
 
