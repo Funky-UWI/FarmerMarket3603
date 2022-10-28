@@ -1,8 +1,8 @@
 from App.models import Farmer
 from App.database import db
 
-def create_user(username, password):
-    newuser = Farmer(username=username, password=password)
+def create_user(username, password, first_name, last_name, email, phone):
+    newuser = Farmer(username=username, password=password, first_name=first_name, last_name=last_name, email=email, phone=phone)
     db.session.add(newuser)
     db.session.commit()
     return newuser

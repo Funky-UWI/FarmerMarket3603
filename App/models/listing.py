@@ -8,8 +8,8 @@ class Listing(db.Model):
     # unit will be a choice column
     unit = db.Column(db.String(10), nullable=False) 
     shop_id = db.Column(db.Integer, db.ForeignKey("shop.id"))
-    shop = db.relationship("shop")
-    pictures = db.relationship("picture")
+    shop = db.relationship("Shop")
+    picture = db.relationship("Picture", back_populates="listing")
 
     def __init__(self, name, ask_price, unit, shop_id):
         self.name = name

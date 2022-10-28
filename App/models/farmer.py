@@ -7,9 +7,9 @@ class Farmer(db.Model):
     password = db.Column(db.String(120), nullable=False)
     first_name = db.Column(db.String(60), nullable=False)
     last_name = db.Column(db.String(60), nullable=False)
-    email = db.Column(db.String(60), nullable=False)
-    phone = db.Column(db.Integer, nullable=False)
-    shop = db.relationship("shop")
+    email = db.Column(db.String, nullable=False)
+    phone = db.Column(db.String, nullable=False)
+    shop = db.relationship("Shop", back_populates="farmer")
 
     def __init__(self, username, password, first_name, last_name, email, phone):
         self.username = username
@@ -23,7 +23,6 @@ class Farmer(db.Model):
         return{
             'id': self.id,
             'username': self.username,
-            'password': self.password,
             'first_name': self.first_name,
             'last_name': self.last_name,
             'email': self.email,

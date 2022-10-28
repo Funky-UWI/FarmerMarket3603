@@ -4,14 +4,14 @@ from App.models import Farmer
 
 
 def authenticate(username, password):
-    user = User.query.filter_by(username=username).first()
+    user = Farmer.query.filter_by(username=username).first()
     if user and user.check_password(password):
         return user
     return None
 
 # Payload is a dictionary which is passed to the function by Flask JWT
 def identity(payload):
-    return User.query.get(payload['identity'])
+    return Farmer.query.get(payload['identity'])
 
 def login_user(user, remember):
     return flask_login.login_user(user, remember=remember)

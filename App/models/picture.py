@@ -6,7 +6,7 @@ class Picture(db.Model):
     listing_id = db.Column(db.Integer, db.ForeignKey("listing.id"))
     url =  db.Column(db.String, nullable=False)
 
-    listing = db.relationship("Listing")
+    listing = db.relationship("Listing", back_populates="picture")
     
 
     def __init__(self, listing_id, url):
