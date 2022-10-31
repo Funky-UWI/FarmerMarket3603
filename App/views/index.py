@@ -1,4 +1,3 @@
-from crypt import methods
 from operator import index
 from flask import Blueprint, redirect, render_template, request, send_from_directory
 from App.controllers import *
@@ -14,3 +13,14 @@ def index_page():
 def shop_page():
     shop = get_all_shops_json()
     return render_template('store.html', shop=shop)
+
+@index_views.route('/login', methods=["POST"])
+def login():
+    data = request.json
+    user = authenticate(data['username'], data['password'])
+    return user.toJSON(), 200
+
+@index_views.route('/logout', methods=['GET'])
+def logout():
+    logout_user()
+    return render_template('feed.html')
