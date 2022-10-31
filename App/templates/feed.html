@@ -3,6 +3,7 @@
 {% block page %}App Users{% endblock %}
 
 {{ super() }}
+{{listings}}
 
 {% block content %}
     <div class="row">
@@ -18,10 +19,10 @@
           </tr>
         </thead>
         <tbody>
-          {% for user in users %}
+          {% for listing in listings %}
             <tr>
-                <td>{{user.id}}</td>
-                <td>{{user.username}}</td>
+                <td>{{listing.id}}</td>
+                <td>{{listing.name}}</td>
             </tr>
           {% endfor %}
         <tbody>
