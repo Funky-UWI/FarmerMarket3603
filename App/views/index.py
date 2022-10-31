@@ -20,6 +20,10 @@ def login():
     user = authenticate(data['username'], data['password'])
     return user.toJSON(), 200
 
+@index_views.route('/login', methods=["GET"])
+def login_page():
+    return render_template("login.html")
+
 @index_views.route('/logout', methods=['GET'])
 def logout():
     logout_user()
