@@ -19,6 +19,7 @@ from App.views import (
     farmer_views,
     index_views
 )
+from App.views.index import login
 
 # New views must be imported and added to this list
 
@@ -67,6 +68,7 @@ def create_app(config={}):
     setup_jwt(app)
     # session based
     login_manager.init_app(app)
+    login_manager.login_view="login"
     app.app_context().push()
     return app
 

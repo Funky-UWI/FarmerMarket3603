@@ -1,9 +1,11 @@
 from operator import index
 from flask import Blueprint, redirect, render_template, request, send_from_directory
+from flask_login import current_user, login_required
 from App.controllers import *
 
 index_views = Blueprint('index_views', __name__, template_folder='../templates')
 
+@login_required
 @index_views.route('/', methods=['GET'])
 def index_page():
     listings = get_all_listings_json()
