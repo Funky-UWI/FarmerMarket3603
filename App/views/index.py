@@ -1,5 +1,5 @@
 from operator import index
-from flask import Blueprint, redirect, render_template, request, send_from_directory
+from flask import Blueprint, jsonify, redirect, render_template, request, send_from_directory
 from flask_login import current_user, login_required
 from App.controllers import *
 
@@ -11,9 +11,15 @@ def index_page():
     listings = get_all_listings_json()
     return render_template('feed.html', listings=listings)
 
-@index_views.route('/shop', methods=["GET"])
-def shop_page():
-    shop = get_all_shops_json()
+@index_views.route('/shops', methods=["GET"])
+def get_all_shops():
+    shops = get_all_shops_json()
+    return jsonify(shops)
+    # return render_template('store.html', shops=shops)
+
+@index_views.route('/shop/<id>', methods=["GET"])
+def get_shop_page(id):
+    shop = get_shop(id)
     return render_template('store.html', shop=shop)
 
 @index_views.route('/login', methods=["POST"])

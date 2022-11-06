@@ -9,7 +9,7 @@
     <div class="row">
       {% for listing in listings %}
       <div class="col s12 m12">
-        <div class="card small horizontal">
+        <div class="card small horizontal hoverable">
           <div class="card-image">
             <img src="https://media.istockphoto.com/photos/tomato-isolated-tomato-on-white-background-with-clipping-path-full-picture-id941825808?b=1&k=20&m=941825808&s=612x612&w=0&h=vqOse4sHymYRm5a3JZaZ9W6tMeSJIM5qkK0l4qus014=">
           </div>
@@ -28,7 +28,7 @@
               
             </div>
             <div class="card-action">
-              <a href="#">{{listing.shop.name}}</a>
+              <a href='/shop/{{listing.shop.id}}'>{{listing.shop.name}}</a>
               <button class="btn right">Add to Cart</button>
             </div>
           </div>
