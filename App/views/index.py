@@ -1,5 +1,5 @@
 from operator import index
-from flask import Blueprint, jsonify, redirect, render_template, request, send_from_directory
+from flask import Blueprint, jsonify, redirect, render_template, request, send_from_directory, url_for
 from flask_login import current_user, login_required
 from App.controllers import *
 
@@ -25,9 +25,13 @@ def get_shop_page(id):
 
 @index_views.route('/login', methods=["POST"])
 def login():
-    data = request.json
-    user = authenticate(data['username'], data['password'])
-    return user.toJSON(), 200
+    data = request.form
+    # return jsonify(data)
+    try:
+        user = authenticate(data['username'], data['password'])
+    except:
+        return 400
+    return redirect(url_for("index_views.index_page")), 200
 
 @index_views.route('/login', methods=["GET"])
 def login_page():
