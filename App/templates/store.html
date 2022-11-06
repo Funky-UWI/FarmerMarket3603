@@ -5,7 +5,12 @@
 {{ super() }}
 
 {% block content %}
-    <div class="row">
-        <p> {{shop.name}} </p>
+
+<div class="row">
+        <div class="caption center">
+          <h1> {{ shop.name }} </h1>
+          <p class="center"> {{ shop.description }} </p>
+          <a href="#"> {{ shop.address1 }} </a>
+        </div>
     </div>
 {% endblock %}

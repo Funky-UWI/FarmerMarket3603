@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block title %}App Users{% endblock %}
+{% block page %}App Users{% endblock %}
+
+{{ super() }}
+
+{% block content %}
+    <div class="row">
+        <p> {{farmer.username}} </p>
+        <p>{{ shop.name }}</p>
+    </div>
+{% endblock %}
