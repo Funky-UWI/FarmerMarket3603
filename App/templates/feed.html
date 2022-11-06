@@ -15,7 +15,9 @@
           </div>
           <div class="card-stacked">
             <div class="card-title">
-              <span>{{ listing.name }}</span>
+              <!-- <a href="#" style="display: inline-block;"> -->
+                <span>{{ listing.name }}</span>
+              <!-- </a> -->
             </div>
             <div class="card-content">
               <p> {{listing.description}} </p>
@@ -23,7 +25,7 @@
             <div class="card-content">
               <span>
                 Asking Price: 
-                {{listing.ask_price}} per {{listing.unit}}
+                ${{listing.ask_price}} per {{listing.unit}}
               </span>
               
             </div>

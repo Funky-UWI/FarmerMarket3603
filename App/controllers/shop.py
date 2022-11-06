@@ -17,3 +17,6 @@ def get_all_shops_json():
 
 def get_shop(id):
     return Shop.query.get(id)
+
+def get_shop_by_farmer(farmerid):
+    return Shop.query.filter_by(farmer_id=farmerid).first()

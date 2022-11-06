@@ -68,7 +68,7 @@ def create_app(config={}):
     setup_jwt(app)
     # session based
     login_manager.init_app(app)
-    login_manager.login_view="login"
+    login_manager.login_view="index_views.login"
     app.app_context().push()
     return app
 

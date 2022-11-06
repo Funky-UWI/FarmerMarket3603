@@ -1,15 +1,24 @@
 from flask import Blueprint, render_template, jsonify, request, send_from_directory
 from flask_jwt import jwt_required, current_identity
+from flask_login import login_required
 
 
 from App.controllers import (
     create_user, 
     get_all_users,
     get_all_users_json,
+    get_user,
+    get_shop_by_farmer
 )
 
 farmer_views = Blueprint('farmer_views', __name__, template_folder='../templates')
 
+@farmer_views.route('/farmer/<id>', methods=['GET'])
+@login_required
+def get_farmer_profile(id):
+    farmer = get_user(id)
+    shop = get_shop_by_farmer(farmer.id)
+    return render_template('farmer.html', farmer=farmer, shop=shop)
 
 @farmer_views.route('/users', methods=['GET'])
 def get_user_page():
