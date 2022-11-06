@@ -14,3 +14,6 @@ def get_all_shops():
 def get_all_shops_json():
     shops = Shop.query.all()
     return [shop.toJSON() for shop in shops]
+
+def get_shop(id):
+    return Shop.query.get(id)
