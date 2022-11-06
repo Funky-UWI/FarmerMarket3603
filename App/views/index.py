@@ -29,9 +29,14 @@ def login():
     # return jsonify(data)
     try:
         user = authenticate(data['username'], data['password'])
+        login_user(user, remember=False)
     except:
         return 400
-    return redirect(url_for("index_views.index_page")), 200
+    # return redirect(url_for("index_views.index_page")), 200
+
+    # if next:
+    #     return redirect(next)
+    return redirect(url_for('farmer_views.get_farmer_profile', id=user.id))
 
 @index_views.route('/login', methods=["GET"])
 def login_page():

@@ -17,7 +17,7 @@ from App.controllers import (
 farmer_views = Blueprint('farmer_views', __name__, template_folder='../templates')
 
 @farmer_views.route('/farmer/<id>', methods=['GET'])
-# @login_required
+@login_required
 def get_farmer_profile(id):
     farmer = get_user(id)
     shop = get_shop_by_farmer(farmer.id)
