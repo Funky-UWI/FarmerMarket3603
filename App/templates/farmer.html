@@ -5,8 +5,71 @@
 {{ super() }}
 
 {% block content %}
-    <div class="section">
-        <p> {{farmer.username}} </p>
-        <p>{{ shop.name }}</p>
+
+<div class="row">
+
+    <div class="center">
+        <h1> {{ shop.name }} </h1>
+        <p class="center"> {{ shop.description }} </p>
+        <a href="#"> {{ shop.address1 }} </a>
     </div>
+
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+
+    <!-- <div class="toolbar-fixed right">
+        <ul>
+          <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">insert_chart</i></a></li>
+          <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">format_quote</i></a></li>
+          <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">publish</i></a></li>
+          <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">attach_file</i></a></li>
+        </ul>
+    </div> -->
+    <nav>
+        <div class="nav-wrapper light-green darken-3">
+          <h6 href="#" class="brand-logo center">Listings</h6>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="#">Add Listing</a></li>
+            <li><a href="#">Edit Page</a></li>
+          </ul>
+        </div>
+      </nav>
+</div>
+    
+<div class="row">
+    {% for listing in listings %}
+    <div class="col s12 m12">
+        <div class="card small horizontal hoverable">
+            <div class="card-image">
+                <img
+                    src="https://media.istockphoto.com/photos/tomato-isolated-tomato-on-white-background-with-clipping-path-full-picture-id941825808?b=1&k=20&m=941825808&s=612x612&w=0&h=vqOse4sHymYRm5a3JZaZ9W6tMeSJIM5qkK0l4qus014=">
+            </div>
+            <div class="card-stacked">
+                <div class="card-title">
+                    <!-- <a href="#" style="display: inline-block;"> -->
+                    <span>{{ listing.name }}</span>
+                    <!-- </a> -->
+                </div>
+                <div class="card-content">
+                    <p> {{listing.description}} </p>
+                </div>
+                <div class="card-content">
+                    <span>
+                        Asking Price:
+                        ${{listing.ask_price}} per {{listing.unit}}
+                    </span>
+
+                </div>
+                <div class="card-action">
+                    <a href='/shop/{{listing.shop.id}}'>{{listing.shop.name}}</a>
+                    <button class="btn right">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}
