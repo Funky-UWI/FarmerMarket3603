@@ -22,6 +22,13 @@ def get_farmer_profile(id):
     listings = get_listings_by_shop(shop.id)
     return render_template('farmer.html', farmer=farmer, shop=shop, listings=listings)
 
+@farmer_views.route('/farmer/<id>/newlisting', methods=['GET'])
+def get_new_listing_form(id):
+    farmer = get_user(id)
+    shop = get_shop_by_farmer(farmer.id)
+    listings = get_listings_by_shop(shop.id)
+    return render_template('addlisting.html', farmer=farmer, shop=shop, listings=listings)
+
 @farmer_views.route('/users', methods=['GET'])
 def get_user_page():
     users = get_all_users()
