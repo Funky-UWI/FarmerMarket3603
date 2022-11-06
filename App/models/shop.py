@@ -24,4 +24,5 @@ class Shop(db.Model):
             'description': self.description,
             'address1': self.address1,
             'address2': self.address2,
+            'farmer_id': self.farmer_id
         }

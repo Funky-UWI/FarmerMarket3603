@@ -12,11 +12,11 @@ class Listing(db.Model):
     shop = db.relationship("Shop")
     picture = db.relationship("Picture", back_populates="listing")
 
-    def __init__(self, name, ask_price, unit, shop_id):
+    def __init__(self, name, ask_price, unit, shop):
         self.name = name
         self.ask_price = ask_price
         self.unit = unit
-        self.shop_id = shop_id
+        self.shop = shop
 
     def toJSON(self):
         return{
@@ -24,5 +24,5 @@ class Listing(db.Model):
             'name': self.name,
             'ask_price': self.ask_price,
             'unit': self.unit,
-            'shop_id': self.shop_id,
+            'shop': self.shop.toJSON()
         }

@@ -6,7 +6,12 @@ from App.controllers.shop import create_shop, get_all_shops, get_all_shops_json
 
 from App.database import create_db, get_migrate
 from App.main import create_app
-from App.controllers import ( create_user, get_all_users_json, get_all_users )
+from App.controllers import ( 
+    create_user, 
+    get_all_users_json, 
+    get_all_users,
+    get_shop
+    )
 
 # This commands file allow you to create convenient CLI commands for testing controllers
 
@@ -118,7 +123,8 @@ listing_cli = AppGroup('listing', help='User object commands')
 @click.argument("unit", default="Pound")
 @click.argument("shop_id", default="1")
 def create_listing_command(name, ask_price, unit, shop_id):
-    create_listing(name, ask_price, unit, shop_id)
+    shop = get_shop(shop_id)
+    create_listing(name, ask_price, unit, shop)
     print(f'{name} created!')
 
 # flask listing list
