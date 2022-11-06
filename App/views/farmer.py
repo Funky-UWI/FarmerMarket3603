@@ -21,10 +21,15 @@ farmer_views = Blueprint('farmer_views', __name__, template_folder='../templates
 def get_farmer_profile(id):
     farmer = get_user(id)
     shop = get_shop_by_farmer(farmer.id)
-    listings = get_listings_by_shop(shop.id)
+    if shop == None:
+        shop = []
+        listings = []
+    else:
+        listings = get_listings_by_shop(shop.id)
     return render_template('farmer.html', farmer=farmer, shop=shop, listings=listings)
 
 @farmer_views.route('/farmer/<id>/newlisting', methods=['GET'])
+@login_required
 def get_new_listing_form(id):
     farmer = get_user(id)
     shop = get_shop_by_farmer(farmer.id)
@@ -32,6 +37,7 @@ def get_new_listing_form(id):
     return render_template('addlisting.html', farmer=farmer, shop=shop, listings=listings)
 
 @farmer_views.route('/farmer/<id>/newlisting', methods=['POST'])
+@login_required
 def post_new_listing(id):
     data = request.form
 
@@ -53,6 +59,7 @@ def post_new_listing(id):
 
 
 @farmer_views.route('/listing/<id>', methods=['DELETE'])
+@login_required
 def delete_listing_route(id):
     try:
         delete_listing(id)

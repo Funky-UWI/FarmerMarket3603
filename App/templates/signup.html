@@ -9,38 +9,48 @@
   <div class="center">
       <h1>Registration</h1>
       <form action='/signup' method="post" enctype="multipart/form-data">
-          <div class="txt_fld">
-              <input type="text" id="username" name="username" required class="white-text center-align">
-              <span></span>
-              <label>Create  Username</label>
+          <div class="input_field">
+              <input type="text" id="username" name="username" required>
+              <label for="username">Create  Username</label>
           </div>
 
-          <div class="txt_fld">
-              <input type="password" id="password" name="password" required class="white-text center-align">
-              <span></span>
-              <label>Create Password</label>
+          <div class="input_field">
+              <input type="password" id="password" name="password" required>
+              <label for="password">Create Password</label>
           </div>
 
-          <div class="txt_fld">
-              <input type="text" id="shopName" name="shopName" required class="white-text center-align">
-              <span></span>
-              <label>Enter Store Name</label>
+          <div class="input_field">
+              <input type="text" id="firstName" name="firstName" required>
+              <label for="firstName">Enter First Name</label>
           </div>
 
-          <div class="txt_fld">
-              <input type="tel" id="contact" name="contact" required class="white-text center-align">
-              <span></span>
-              <label>Enter Phone Number (eg. 18683161135)</label>
+          <div class="input_field">
+            <input type="text" id="lastName" name="lastName" required>
+            <label for="lastName">Enter Last Name</label>
+        </div>
+
+        <div class="input_field">
+            <input type="text" id="shopName" name="shopName" required>
+            <label for="shopName">Enter Store Name</label>
+        </div>
+
+          <div class="input_field">
+              <input type="tel" id="phone" name="phone" required>
+              <label for="phone">Enter Phone Number (eg. 18683161135)</label>
+          </div>
+
+          <div class="input_field">
+            <input type="email" id="email" name="email" required>
+            <label for="email">Enter Email</label>
+        </div>
+          
+          <div class="input_field">
+              <input type="text" id="location" name="location" required>
+              <label for="location">Enter Address</label>
           </div>
           
-          <div class="txt_fld">
-              <input type="text" id="location" name="location" required class="white-text center-align">
-              <span></span>
-              <label>Enter Address</label>
-          </div>
-          
 
-          <div class="txt_fld">
+          <div class="input_field">
               <div class="row">
               <input type="file" id="image" name="image">
               </div>

@@ -46,7 +46,30 @@ def login_page():
 def signup_page():
     return render_template("signup.html")
 
+@index_views.route('/signup', methods=["POST"])
+def signup():
+    data = request.form
+    # return jsonify(data)
+    user = create_user(
+        data['username'], 
+        data['password'], 
+        data['firstName'], 
+        data['lastName'], 
+        data['email'], 
+        data['phone']
+    )
+    # create shop
+    # shop = create_shop(
+
+    # )
+    # return user.toJSON()
+    return redirect(url_for('farmer_views.get_farmer_profile', id=user.id))
+
 @index_views.route('/logout', methods=['GET'])
 def logout():
     logout_user()
     return render_template('feed.html')
+
+@index_views.route('/images/<path>', methods=['GET'])
+def get_picture(path):
+    return send_from_directory('../', 'images', 'tomato.png')
