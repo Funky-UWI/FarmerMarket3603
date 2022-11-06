@@ -8,17 +8,19 @@ from App.controllers import (
     get_all_users,
     get_all_users_json,
     get_user,
-    get_shop_by_farmer
+    get_shop_by_farmer,
+    get_listings_by_shop
 )
 
 farmer_views = Blueprint('farmer_views', __name__, template_folder='../templates')
 
 @farmer_views.route('/farmer/<id>', methods=['GET'])
-@login_required
+# @login_required
 def get_farmer_profile(id):
     farmer = get_user(id)
     shop = get_shop_by_farmer(farmer.id)
-    return render_template('farmer.html', farmer=farmer, shop=shop)
+    listings = get_listings_by_shop(shop.id)
+    return render_template('farmer.html', farmer=farmer, shop=shop, listings=listings)
 
 @farmer_views.route('/users', methods=['GET'])
 def get_user_page():
