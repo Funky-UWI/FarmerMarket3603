@@ -20,7 +20,8 @@ def get_all_shops():
 @index_views.route('/shop/<id>', methods=["GET"])
 def get_shop_page(id):
     shop = get_shop(id)
-    return render_template('store.html', shop=shop)
+    listings = get_listings_by_shop(id)
+    return render_template('store.html', shop=shop, listings=listings)
 
 @index_views.route('/login', methods=["POST"])
 def login():
