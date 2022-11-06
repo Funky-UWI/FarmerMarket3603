@@ -1,0 +1,50 @@
+{% extends "farmer.html" %}
+{% block title %}App Users{% endblock %}
+{% block page %}App Users{% endblock %}
+
+{{ super() }}
+
+{% block form %}
+<div class="row">
+    <form>
+
+        <div class="card medium horizontal hoverable">
+            <div class="card-image">
+                <img
+                    src="https://media.istockphoto.com/photos/tomato-isolated-tomato-on-white-background-with-clipping-path-full-picture-id941825808?b=1&k=20&m=941825808&s=612x612&w=0&h=vqOse4sHymYRm5a3JZaZ9W6tMeSJIM5qkK0l4qus014=">
+            </div>
+            <div class="card-stacked">
+                <div class="card-content">
+                    <div class="input-field">
+                        <input type="text" id="productname">
+                        <label for="productname">Product Name</label>
+                    </div>
+                    <div class="input-field">
+                        <textarea id="description" class="materialize-textarea"></textarea>
+                        <label for="description">Description</label>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="input-field col s4">
+                        <input type="number" id="askprice">
+                        <label for="askprice">Asking Price</label>
+                    </div>
+                    <!-- <div class="col s4">
+                    <p>per</p>
+                </div> -->
+                    <div class="input-field col s4">
+                        <input type="text" id="unit">
+                        <label for="unit">per Unit</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-action grey darken-3">
+                <a href='#' class="left">Cancel</a>
+                <a href="#" class="right">POST</a>
+            </div>
+        </div>
+
+    </form>
+</div>
+{% endblock %}
