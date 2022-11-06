@@ -9,6 +9,10 @@ def get_all_listings_json():
     listings = Listing.query.all()
     return [listing.toJSON() for listing in listings]
 
+def get_listings_by_shop(shopid):
+    listings = Listing.query.filter_by(shop_id=shopid)
+    return [listing.toJSON() for listing in listings]
+
 def create_listing(name, ask_price, unit, shop, description):
     listing = Listing(name=name, ask_price=ask_price, unit=unit, shop=shop, description=description)
     db.session.add(listing)
