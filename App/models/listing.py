@@ -25,4 +25,5 @@ class Listing(db.Model):
             'ask_price': self.ask_price,
             'unit': self.unit,
             'shop_id': self.shop_id,
+            'shop': self.shop
         }
