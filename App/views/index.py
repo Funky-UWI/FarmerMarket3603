@@ -33,6 +33,10 @@ def login():
 def login_page():
     return render_template("login.html")
 
+@index_views.route('/signup', methods=["GET"])
+def signup_page():
+    return render_template("signup.html")
+
 @index_views.route('/logout', methods=['GET'])
 def logout():
     logout_user()
