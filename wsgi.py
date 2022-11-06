@@ -122,9 +122,10 @@ listing_cli = AppGroup('listing', help='User object commands')
 @click.argument("ask_price", default="1.00")
 @click.argument("unit", default="Pound")
 @click.argument("shop_id", default="1")
-def create_listing_command(name, ask_price, unit, shop_id):
+@click.argument("description", default="This is a tomato!")
+def create_listing_command(name, ask_price, unit, shop_id, description):
     shop = get_shop(shop_id)
-    create_listing(name, ask_price, unit, shop)
+    create_listing(name, ask_price, unit, shop, description)
     print(f'{name} created!')
 
 # flask listing list

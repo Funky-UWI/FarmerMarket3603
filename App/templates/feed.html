@@ -18,7 +18,14 @@
               <span>{{ listing.name }}</span>
             </div>
             <div class="card-content">
-              {{listing.ask_price}} per {{listing.unit}}
+              <p> {{listing.description}} </p>
+            </div>
+            <div class="card-content">
+              <span>
+                Asking Price: 
+                {{listing.ask_price}} per {{listing.unit}}
+              </span>
+              
             </div>
             <div class="card-action">
               <a href="#">{{listing.shop.name}}</a>

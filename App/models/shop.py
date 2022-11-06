@@ -7,7 +7,7 @@ class Shop(db.Model):
     description = db.Column(db.String(400), nullable=False)
     address1 = db.Column(db.String(200), nullable=False)
     address2 = db.Column(db.String(200), nullable=False)
-    farmer_id = db.Column(db.Integer, db.ForeignKey("farmer.id"))
+    farmer_id = db.Column(db.Integer, db.ForeignKey("farmer.id"), nullable=False)
     farmer = db.relationship("Farmer", back_populates="shop")
 
     def __init__(self, name, description, address1, address2, farmer_id):
