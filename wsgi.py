@@ -140,7 +140,7 @@ def list_listing_command(format):
 # flask listing delete
 @listing_cli.command("delete", help="Deletes a listing")
 @click.argument("id")
-def create_listing_command(id):
+def delete_listing_command(id):
     delete_listing(id)
     print(f'{id} deleted!')
 

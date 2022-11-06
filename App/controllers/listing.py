@@ -23,4 +23,4 @@ def delete_listing(id):
     listing = Listing.query.get(id)
     db.session.delete(listing)
     db.session.commit()
-    return
+    return listing

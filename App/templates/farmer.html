@@ -60,11 +60,20 @@
 
             </div>
             <div class="card-action">
-                <a href='/shop/{{listing.shop.id}}'>{{listing.shop.name}}</a>
-                <button class="btn right">Add to Cart</button>
+                <a href=''><i class="material-icons">edit</i></a>
+                <a href="" onclick="deletelisting('{{listing.id}}')"><i class="material-icons">delete</i></a>
             </div>
         </div>
     </div>
     {% endfor %}
 </div>
+
+<script>
+    async function deletelisting(id) {
+        await fetch("/listing/"+id, {
+            'method': 'delete'
+        })
+    }
+</script>
+
 {% endblock %}

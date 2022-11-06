@@ -6,7 +6,8 @@
 
 {% block form %}
 <div class="row">
-    <form>
+    
+    <form action="/farmer/{{farmer.id}}/newlisting" method="post" id="form">
 
         <div class="card medium horizontal hoverable">
             <div class="card-image">
@@ -16,24 +17,24 @@
             <div class="card-stacked">
                 <div class="card-content">
                     <div class="input-field">
-                        <input type="text" id="productname">
+                        <input type="text" id="productname" name="productname" required>
                         <label for="productname">Product Name</label>
                     </div>
                     <div class="input-field">
-                        <textarea id="description" class="materialize-textarea"></textarea>
+                        <textarea id="description" name="description" class="materialize-textarea"></textarea>
                         <label for="description">Description</label>
                     </div>
                 </div>
                 <div class="card-content">
                     <div class="input-field col s4">
-                        <input type="number" id="askprice">
+                        <input type="number" id="askprice" name="askprice" min="0" max="100000" step="0.01" value="0.00" required>
                         <label for="askprice">Asking Price</label>
                     </div>
                     <!-- <div class="col s4">
                     <p>per</p>
                 </div> -->
                     <div class="input-field col s4">
-                        <input type="text" id="unit">
+                        <input type="text" id="unit" name="unit" value="pound" required>
                         <label for="unit">per Unit</label>
                     </div>
                 </div>
@@ -41,7 +42,8 @@
 
             <div class="card-action grey darken-3">
                 <a href='#' class="left">Cancel</a>
-                <a href="#" class="right">POST</a>
+                <a href="#" onclick="document.getElementById('form').submit()" class="right">POST</a>
+                <!-- <input type="submit" value="POST" class="btn"> -->
             </div>
         </div>
 
