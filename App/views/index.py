@@ -30,14 +30,14 @@ def login():
     user = authenticate(data['username'], data['password'])
     if not user:
         flash('Invalid Credentials.')
-        return redirect(url_for("index_views.index_page")), 400
+        return redirect(url_for("index_views.index_page"))
 
     try:
         login_user(user, remember=False)
     except Exception as e:
         flash(str(e))
-        return redirect(url_for("index_views.index_page")), 400
-    return redirect(url_for("index_views.index_page")), 200
+        return redirect(url_for("index_views.index_page"))
+    return redirect(url_for("index_views.index_page"))
 
     # if next:
     #     return redirect(next)
