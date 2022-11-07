@@ -12,8 +12,8 @@ def index_page():
 
 @index_views.route('/listings', methods=['GET'])
 def search_listings():
-    query = request.data
-    listings = get_listings_by_name(query)
+    query = request.args
+    listings = get_listings_by_name(query['search'])
     return render_template('feed.html', listings=listings)
 
 @index_views.route('/shops', methods=["GET"])
