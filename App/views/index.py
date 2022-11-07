@@ -5,10 +5,15 @@ from App.controllers import *
 
 index_views = Blueprint('index_views', __name__, template_folder='../templates')
 
-@login_required
 @index_views.route('/', methods=['GET'])
 def index_page():
     listings = get_all_listings_json()
+    return render_template('feed.html', listings=listings)
+
+@index_views.route('/listings', methods=['GET'])
+def search_listings():
+    query = request.data
+    listings = get_listings_by_name(query)
     return render_template('feed.html', listings=listings)
 
 @index_views.route('/shops', methods=["GET"])
