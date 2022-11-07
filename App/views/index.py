@@ -72,4 +72,4 @@ def logout():
 
 @index_views.route('/images/<path>', methods=['GET'])
 def get_picture(path):
-    return send_from_directory('../', 'images', 'tomato.png')
+    return send_from_directory("./images", 'fig1.png')
