@@ -82,7 +82,7 @@ def signup():
 @index_views.route('/logout', methods=['GET'])
 def logout():
     logout_user()
-    return render_template('feed.html')
+    return redirect(url_for('index_views.index_page'))
 
 @index_views.route('/images/<path>', methods=['GET'])
 def get_picture(path):
