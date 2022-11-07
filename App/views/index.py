@@ -1,5 +1,5 @@
 from operator import index
-from flask import Blueprint, jsonify, redirect, render_template, request, send_from_directory, url_for
+from flask import Blueprint, jsonify, redirect, render_template, request, send_file, send_from_directory, url_for, flash
 from flask_login import current_user, login_required
 from App.controllers import *
 
@@ -27,12 +27,17 @@ def get_shop_page(id):
 def login():
     data = request.form
     # return jsonify(data)
+    user = authenticate(data['username'], data['password'])
+    if not user:
+        flash('Invalid Credentials.')
+        return redirect(url_for("index_views.index_page")), 400
+
     try:
-        user = authenticate(data['username'], data['password'])
         login_user(user, remember=False)
-    except:
-        return 400
-    # return redirect(url_for("index_views.index_page")), 200
+    except Exception as e:
+        flash(str(e))
+        return redirect(url_for("index_views.index_page")), 400
+    return redirect(url_for("index_views.index_page")), 200
 
     # if next:
     #     return redirect(next)
@@ -72,4 +77,6 @@ def logout():
 
 @index_views.route('/images/<path>', methods=['GET'])
 def get_picture(path):
-    return send_from_directory("./images", 'fig1.png')
+    # return send_from_directory("./images", 'fig1.png')
+    img_dir = "./images"
+    # return send_file(os.path.join())
