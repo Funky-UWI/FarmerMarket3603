@@ -10,7 +10,8 @@ from App.controllers import (
     create_user, 
     get_all_users_json, 
     get_all_users,
-    get_shop
+    get_shop,
+    get_user
     )
 
 # This commands file allow you to create convenient CLI commands for testing controllers
@@ -99,7 +100,8 @@ shop_cli = AppGroup('shop', help='Shop object commands')
 @click.argument("address2", default="Street Avenue")
 @click.argument("farmer_id", default="1")
 def create_shop_command(name, description, address1, address2, farmer_id):
-    create_shop(name, description, address1, address2, farmer_id)
+    farmer = get_user(farmer_id)
+    create_shop(name, description, address1, address2, farmer)
     print(f'{name} created!')
 
 # flask shop list

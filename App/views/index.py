@@ -8,6 +8,7 @@ index_views = Blueprint('index_views', __name__, template_folder='../templates')
 @index_views.route('/', methods=['GET'])
 def index_page():
     listings = get_all_listings_json()
+    # listings.sort(reverse=True, id=id)
     return render_template('feed.html', listings=listings)
 
 @index_views.route('/listings', methods=['GET'])
@@ -77,7 +78,7 @@ def signup():
         user
     )
     # return user.toJSON()
-    return redirect(url_for('farmer_views.get_farmer_profile', id=user.id))
+    return redirect(url_for('index_views.login_page', id=user.id))
 
 @index_views.route('/logout', methods=['GET'])
 def logout():
