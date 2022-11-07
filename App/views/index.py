@@ -37,7 +37,7 @@ def login():
     except Exception as e:
         flash(str(e))
         return redirect(url_for("index_views.index_page"))
-    return redirect(url_for("index_views.index_page"))
+    # return redirect(url_for("index_views.index_page"))
 
     # if next:
     #     return redirect(next)
@@ -64,9 +64,13 @@ def signup():
         data['phone']
     )
     # create shop
-    # shop = create_shop(
-
-    # )
+    shop = create_shop(
+        data['shopName'],
+        data['shopDescription'],
+        data['address1'],
+        data['address2'],
+        user
+    )
     # return user.toJSON()
     return redirect(url_for('farmer_views.get_farmer_profile', id=user.id))
 

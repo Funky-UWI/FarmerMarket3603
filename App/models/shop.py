@@ -10,12 +10,12 @@ class Shop(db.Model):
     farmer_id = db.Column(db.Integer, db.ForeignKey("farmer.id"), nullable=False)
     farmer = db.relationship("Farmer", back_populates="shop")
 
-    def __init__(self, name, description, address1, address2, farmer_id):
+    def __init__(self, name, description, address1, address2, farmer):
         self.name = name
         self.description = description
         self.address1 = address1
         self.address2 = address2
-        self.farmer_id = farmer_id
+        self.farmer = farmer
 
     def toJSON(self):
         return{

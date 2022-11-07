@@ -2,8 +2,8 @@ from App.models import Farmer
 from App.database import db
 from App.models.shop import Shop
 
-def create_shop(name, description, address1, address2, farmer_id):
-    newshop = Shop(name=name, description=description, address1=address1, address2=address2, farmer_id=farmer_id)
+def create_shop(name, description, address1, address2, farmer):
+    newshop = Shop(name=name, description=description, address1=address1, address2=address2, farmer=farmer)
     db.session.add(newshop)
     db.session.commit()
     return newshop
