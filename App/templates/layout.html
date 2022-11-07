@@ -26,14 +26,14 @@
       </div>
 
       <div class="col s4" style="max-height:100%;">
-        <form id="form" action="/listings" method="get">
+        <form id="searchform" action="/listings" method="get">
           <div class="input-field" >
             <input onchange="search(this.value)" id="search" name="search" type="search" placeholder="search" required>
             <label class="label-icon" for="search"><i class="material-icons">search</i></label>
             <i class="material-icons">close</i>
             <script>
               function search(value) {
-                form = document.getElementById('form');
+                form = document.getElementById('searchform');
                 form.submit();
               }
             </script>
@@ -44,8 +44,15 @@
       <div class="right">
         <ul id="nav-mobile">
           <li><a href="/">Feed</a></li>
+          {% if current_user.is_authenticated %}
+          <li><a href="/logout">Logout</a></li>
+          {% else %}
           <li><a href="/login">Login</a></li>
           <li> <a href="/signup">Signup</a></li>
+          {% endif %}
+          {% if current_user.is_authenticated %}
+          <li><a href="/farmer/{{current_user.id}}">{{ current_user.username }}</a></li>
+          {% endif %}
           <!-- <div class="search_box">
                   <input type="search"placeholder="search here">
                   <span class="fa fa-search"></span>
