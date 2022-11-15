@@ -1,6 +1,6 @@
 from flask import Blueprint, flash, redirect, render_template, jsonify, request, send_from_directory, url_for
 from flask_jwt import jwt_required, current_identity
-from flask_login import login_required
+from flask_login import login_required, current_user
 
 
 from App.controllers import (
@@ -11,7 +11,8 @@ from App.controllers import (
     get_shop_by_farmer,
     get_listings_by_shop,
     create_listing,
-    delete_listing
+    delete_listing,
+    get_all_orders_json
 )
 
 farmer_views = Blueprint('farmer_views', __name__, template_folder='../templates')
@@ -67,6 +68,7 @@ def delete_listing_route(id):
         return flash("Could not delete")
 
     return redirect(url_for('farmer_views.get_farmer_profile', id=id))
+
 
 @farmer_views.route('/users', methods=['GET'])
 def get_user_page():

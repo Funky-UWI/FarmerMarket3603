@@ -9,8 +9,11 @@ def get_all_orders_json():
     orders = Order.query.all()
     return [order.toJSON() for order in orders]
 
-def create_order(name, ask_price, unit, shop_id):
-    order = Order(name=name, ask_price=ask_price, unit=unit, shop_id=shop_id)
+# def get_all_orders_by_user():
+
+
+def create_order(listing, cart):
+    order = Order(listing=listing, cart=cart)
     db.session.add(order)
     db.session.commit()
     return order

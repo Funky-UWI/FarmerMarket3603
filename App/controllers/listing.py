@@ -1,6 +1,9 @@
 from App.models import Listing
 from App.database import db
 
+def get_listing(id):
+    return Listing.query.get(id)
+
 def get_all_listings():
     listings = Listing.query.all()
     return listings

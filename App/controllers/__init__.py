@@ -4,3 +4,4 @@ from .shop import *
 from .order import *
 from .auth import *
 from .picture import *
+from .cart import *

@@ -70,6 +70,9 @@ def create_app(config={}):
     login_manager.init_app(app)
     login_manager.login_view="index_views.login"
     app.app_context().push()
+
+    # sessions
+    app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
     return app
 
 @login_manager.user_loader

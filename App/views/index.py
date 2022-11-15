@@ -2,11 +2,62 @@ from operator import index
 from flask import Blueprint, jsonify, redirect, render_template, request, send_file, send_from_directory, url_for, flash
 from flask_login import current_user, login_required
 from App.controllers import *
+from flask import session
+
+from uuid import uuid4
 
 index_views = Blueprint('index_views', __name__, template_folder='../templates')
 
+@index_views.route('/cart', methods=['GET'])
+def get_cart_page():
+    cart = None
+    if current_user.is_authenticated:
+        cart = get_cart_by_session(current_user.id)
+    else:
+        cart = get_cart_by_session(session['uuid'])
+    return jsonify(cart.toJSON())
+
+@index_views.route('/order', methods=['POST'])
+def post_order():
+    data = request.json
+    listing_id = int(data['listing_id'])
+    cart_id = int(data['cart_id'])
+    listing = get_listing(listing_id)
+    cart = get_cart(cart_id)
+    order = create_order(listing=listing, cart=cart)
+    return jsonify(order.toJSON())
+
+@index_views.route('/session', methods=['GET'])
+def get_session():
+    cart = None
+    if current_user.is_authenticated:
+        cart = get_cart_by_session(current_user.id)
+        if not cart:
+            cart = create_cart(current_user.id)
+    else:
+        cart = get_cart_by_session(session['uuid'])
+        if not cart:
+            session['uuid'] = uuid4().hex
+            cart = create_cart(session['uuid'])
+
+    return jsonify(cart.toJSON(), session)
+
 @index_views.route('/', methods=['GET'])
 def index_page():
+
+    # establish cart existence
+    cart = None
+    if current_user.is_authenticated:
+        cart = get_cart_by_session(current_user.id)
+        if not cart:
+            cart = create_cart(current_user.id)
+    else:
+        if 'uuid' in session:
+            cart = get_cart_by_session(session['uuid'])
+        if not cart:
+            session['uuid'] = uuid4().hex
+            cart = create_cart(session['uuid'])
+    
     listings = get_all_listings_json()
     # listings.sort(reverse=True, id=id)
     return render_template('feed.html', listings=listings)
@@ -78,6 +129,10 @@ def signup():
         user
     )
     # return user.toJSON()
+
+    # create cart
+    # cart = create_cart(user.id)
+
     return redirect(url_for('index_views.login_page', id=user.id))
 
 @index_views.route('/logout', methods=['GET'])

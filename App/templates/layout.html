@@ -44,6 +44,7 @@
       <div class="right">
         <ul id="nav-mobile">
           <li><a href="/">Feed</a></li>
+          <li><a href="/cart">Cart</a></li>
           {% if current_user.is_authenticated %}
           <li><a href="/logout">Logout</a></li>
           {% else %}
@@ -52,6 +53,9 @@
           {% endif %}
           {% if current_user.is_authenticated %}
           <li><a href="/farmer/{{current_user.id}}">{{ current_user.username }}</a></li>
+          {% endif %}
+          {% if current_user.is_anonymous %}
+          <li></li>
           {% endif %}
           <!-- <div class="search_box">
                   <input type="search"placeholder="search here">
