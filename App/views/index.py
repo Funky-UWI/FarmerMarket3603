@@ -11,7 +11,22 @@ index_views = Blueprint('index_views', __name__, template_folder='../templates')
 @index_views.route('/cart', methods=['GET'])
 def get_cart_page():
     try:
-        cart = get_cart_by_current_user(current_user, session)
+        # cart = get_cart_by_current_user(current_user, session)
+        cart = None
+        # return jsonify({'session': session['uuid'], 'current_user': current_user.is_authenticated})
+        if current_user.is_authenticated:
+            cart = None
+            cart = get_cart_by_session(current_user.id)
+            if not cart:
+                cart = create_cart(current_user.id)
+        else:
+            if 'uuid' in session:
+                cart = None
+                cart = get_cart_by_session(session['uuid'])
+            if not cart:
+                cart = None
+                session['uuid'] = uuid4().hex
+                cart = create_cart(session['uuid'])
     except Exception as e:
         flash(str(e))
     # return jsonify(cart.toJSON())
