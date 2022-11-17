@@ -52,11 +52,11 @@ def index_page():
     else:
         if 'uuid' in session:
             cart = None
-            # cart = get_cart_by_session(int(session['uuid']))
+            cart = get_cart_by_session(int(session['uuid']))
         if not cart:
             cart = None
-            # session['uuid'] = uuid4().hex
-            # cart = create_cart(int(session['uuid']))
+            session['uuid'] = uuid4().hex
+            cart = create_cart(int(session['uuid']))
     
     listings = get_all_listings_json()
     # listings.sort(reverse=True, id=id)
