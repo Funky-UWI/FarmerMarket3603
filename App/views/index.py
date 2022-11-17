@@ -48,7 +48,7 @@ def index_page():
     # establish cart existence
     cart = None
     if current_user.is_authenticated:
-        cart = get_cart_by_session(current_user.id)
+        cart = get_cart_by_session(str(current_user.id))
         if not cart:
             cart = create_cart(current_user.id)
     else:
