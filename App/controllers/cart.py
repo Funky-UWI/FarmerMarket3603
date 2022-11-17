@@ -14,3 +14,11 @@ def get_cart_by_session(session_id):
 def get_cart(id):
     cart = Cart.query.get(id)
     return cart
+
+def get_cart_by_current_user(current_user, session):
+    cart = None
+    if current_user.is_authenticated:
+        cart = get_cart_by_session(current_user.id)
+    else:
+        cart = get_cart_by_session(session['uuid'])
+    return cart

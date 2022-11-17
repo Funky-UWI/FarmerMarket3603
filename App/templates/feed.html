@@ -31,7 +31,9 @@
             </div>
             <div class="card-action">
               <a href='/shop/{{listing.shop.id}}'>{{listing.shop.name}}</a>
-              <button class="btn right">Add to Cart</button>
+              <form action="/cart" method="post" >
+                <button type="submit" name="listing_id" value="{{listing.id}}" class="btn right">Add to Cart</button>
+              </form>
             </div>
           </div>
         </div>

@@ -10,22 +10,18 @@ index_views = Blueprint('index_views', __name__, template_folder='../templates')
 
 @index_views.route('/cart', methods=['GET'])
 def get_cart_page():
-    cart = None
-    if current_user.is_authenticated:
-        cart = get_cart_by_session(current_user.id)
-    else:
-        cart = get_cart_by_session(session['uuid'])
+    cart = get_cart_by_current_user(current_user, session)
     return jsonify(cart.toJSON())
 
-@index_views.route('/order', methods=['POST'])
+@index_views.route('/cart', methods=['POST'])
 def post_order():
-    data = request.json
+    # data = request.json
+    data = request.form
     listing_id = int(data['listing_id'])
-    cart_id = int(data['cart_id'])
     listing = get_listing(listing_id)
-    cart = get_cart(cart_id)
+    cart = get_cart_by_current_user(current_user, session)
     order = create_order(listing=listing, cart=cart)
-    return jsonify(order.toJSON())
+    return redirect(url_for('index_views.index_page'))
 
 @index_views.route('/session', methods=['GET'])
 def get_session():
