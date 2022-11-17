@@ -43,7 +43,7 @@ def index_page():
 
     # establish cart existence
     # cart = None
-    return jsonify(session)
+    return jsonify({'session': session, 'current_user': current_user.is_authenticated})
     # if current_user.is_authenticated:
     #     cart = get_cart_by_session(current_user.id)
     #     if not cart:
