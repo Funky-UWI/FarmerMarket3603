@@ -10,7 +10,10 @@ index_views = Blueprint('index_views', __name__, template_folder='../templates')
 
 @index_views.route('/cart', methods=['GET'])
 def get_cart_page():
-    cart = get_cart_by_current_user(current_user, session)
+    try:
+        cart = get_cart_by_current_user(current_user, session)
+    except Exception as e:
+        flash(str(e))
     return jsonify(cart.toJSON())
 
 @index_views.route('/cart', methods=['POST'])
