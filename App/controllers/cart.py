@@ -22,3 +22,7 @@ def get_cart_by_current_user(current_user, session):
     else:
         cart = get_cart_by_session(session['uuid'])
     return cart
+
+def get_cart_total(id):
+    cart = get_cart(id)
+    return cart.get_total()

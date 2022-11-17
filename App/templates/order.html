@@ -5,23 +5,19 @@
 {{ super() }}
 
 {% block content %}
-    <div class="row">
-        <p>
-            This is table is renderd on the Server. Flask gets the data from the database and uses jinja templates to dyanmically render this page when a request is sent to <a href="/users">/users</a>.
-        </p>
-    </div>
+  CART JSON: {{cart.toJSON()}}
     <div class="row">
       <table>
         <thead>
           <tr>
-            <th>Id</th><th>Username</th>
+            <th>Id</th><th>Order</th>
           </tr>
         </thead>
         <tbody>
-          {% for user in users %}
+          {% for order in cart.order %}
             <tr>
-                <td>{{user.id}}</td>
-                <td>{{user.username}}</td>
+                <td>{{order.id}}</td>
+                <td>{{order.listing.toJSON()}}</td>
             </tr>
           {% endfor %}
         <tbody>

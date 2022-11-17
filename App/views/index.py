@@ -14,7 +14,8 @@ def get_cart_page():
         cart = get_cart_by_current_user(current_user, session)
     except Exception as e:
         flash(str(e))
-    return jsonify(cart.toJSON())
+    # return jsonify(cart.toJSON())
+    return render_template('order.html', cart=cart)
 
 @index_views.route('/cart', methods=['POST'])
 def post_order():

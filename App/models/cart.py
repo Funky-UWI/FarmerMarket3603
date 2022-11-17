@@ -11,9 +11,16 @@ class Cart(db.Model):
     def __init__(self, session_id):
         self.session_id = session_id
 
+    def get_total(self):
+        total = 0.0
+        for order in self.order:
+            total += order.listing.ask_price
+        return total
+
     def toJSON(self):
         return{
             'id': self.id,
             'session_id': self.session_id,
-            'orders': [order.toJSON() for order in self.order]
+            'orders': [order.toJSON() for order in self.order],
+            'total': self.get_total()
         }
