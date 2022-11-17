@@ -49,9 +49,9 @@ def index_page():
     # return jsonify({'session': session['uuid'], 'current_user': current_user.is_authenticated})
     if current_user.is_authenticated:
         cart = None
-        # cart = get_cart_by_session(current_user.id)
-        # if not cart:
-        #     cart = create_cart(current_user.id)
+        cart = get_cart_by_session(current_user.id)
+        if not cart:
+            cart = create_cart(current_user.id)
     else:
         if 'uuid' in session:
             cart = None

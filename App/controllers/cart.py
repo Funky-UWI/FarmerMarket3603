@@ -8,7 +8,7 @@ def create_cart(id):
     return cart
 
 def get_cart_by_session(session_id):
-    cart = Cart.query.filter_by(session_id=session_id).first()
+    cart = Cart.query.filter_by(session_id=str(session_id)).first()
     return cart
 
 def get_cart(id):
@@ -18,7 +18,7 @@ def get_cart(id):
 def get_cart_by_current_user(current_user, session):
     cart = None
     if current_user.is_authenticated:
-        cart = get_cart_by_session(str(current_user.id))
+        cart = get_cart_by_session(current_user.id)
     else:
         cart = get_cart_by_session(session['uuid'])
     return cart
