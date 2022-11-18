@@ -52,6 +52,6 @@ class Order(db.Model):
 
     def toJSON(self):
         return{
-            'cart_id': self.cart.id,
+            'cart_id': self.cart_id,
             'listing': self.listing.toJSON()
         }

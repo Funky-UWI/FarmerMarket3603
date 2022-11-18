@@ -17,6 +17,11 @@ def get_listings_by_shop(shopid):
     # listings = Listing.query.all()
     return [listing.toJSON() for listing in listings]
 
+def get_listings_by_shop_raw(shopid):
+    listings = Listing.query.filter_by(shop_id=shopid)
+    # listings = Listing.query.all()
+    return listings
+
 def get_listings_by_name(name):
     listings = Listing.query.filter_by(name=name)
     return [listing.toJSON() for listing in listings]

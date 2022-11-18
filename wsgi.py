@@ -11,7 +11,9 @@ from App.controllers import (
     get_all_users_json, 
     get_all_users,
     get_shop,
-    get_user
+    get_user,
+    get_all_orders,
+    get_all_orders_json
     )
 
 # This commands file allow you to create convenient CLI commands for testing controllers
@@ -147,3 +149,16 @@ def delete_listing_command(id):
     print(f'{id} deleted!')
 
 app.cli.add_command(listing_cli) # add the group to the cli
+
+# ------ orders cli -----
+orders_cli = AppGroup('orders', help='Order object commands')
+@orders_cli.command("list", help="Lists order in the database")
+@click.argument("format", default="string")
+def list_order_command(format):
+    if format == 'string':
+        print(get_all_orders())
+    else:
+        print(get_all_orders_json())
+
+app.cli.add_command(orders_cli) # add the group to the cli
+

@@ -12,10 +12,19 @@ from App.controllers import (
     get_listings_by_shop,
     create_listing,
     delete_listing,
-    get_all_orders_json
+    get_all_orders_json,
+    get_all_orders_by_shop
 )
 
 farmer_views = Blueprint('farmer_views', __name__, template_folder='../templates')
+
+@farmer_views.route('/farmer/orders', methods=['GET'])
+@login_required
+def get_farmer_orders():
+    # get all orders with shop id owned by farmer
+    shop = get_shop_by_farmer(current_user.id)
+    orders = get_all_orders_by_shop(shop.id)
+    return jsonify([order for order in orders])
 
 @farmer_views.route('/farmer/<id>', methods=['GET'])
 @login_required
